@@ -52,24 +52,24 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Name</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title of the item"
-                name="title" value="{{item_data[1]}}"/>
+                name="title" value="{{stored_itemdata[1]}}"/>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Description</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Discription of the item"
-                name="Discription" rows="5">{{item_data[6]}}</textarea>
+                name="Discription" rows="5">{{stored_itemdata[7]}}</textarea>
         </div>
         <div class="mb-3 box">
         <div>
         <label for="exampleFormControlInput1" class="form-label">Quantity</label>
-        <input type="number" class="form-control" name="quantity" id="exampleFormControlInput1" value="{{item_data[4]}}" required />
+        <input type="number" class="form-control" name="quantity" id="exampleFormControlInput1" value="{{stored_itemdata[3]}}" required />
         </div>
         <div>
         <label for="Price" class="form-label">Price</label>
-        <input type="number" class="form-control" name="price" id="Price" value="{{item_data[3]}}"required />
+        <input type="number" class="form-control" name="price" id="Price" value="{{stored_itemdata[2]}}"required />
         </div>
             <div class="dropdown mt-4">
-                <select name="category" value="{{item_data[5]}}" id="Category">
+                <select name="category" value="{{stored_itemdata[4]}}" id="Category">
                     <option>Home_appliances</option>
                     <option>Grocery</option>
                     <option>Fashion</option>
@@ -78,9 +78,9 @@
             </div>
         </div>
         <div class="mb-3">
-            <img src="/static/{{item_data[2]}}" class="card-img-top" alt="...">
+            <img src="/static/{{stored_itemdata[5]}}" class="card-img-top" alt="...">
             <label for="formFile" class="form-label"></label>
-            <input class="form-control" type="file" name="file" value="{{item_data[2]}}" id="formFile" />
+            <input class="form-control" type="file" name="file" value="{{stored_itemdata[5]}}" id="formFile" />
         </div>
         <button class="btn btn-warning">Submit</button>
     </form>

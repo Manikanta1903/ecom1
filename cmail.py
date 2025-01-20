@@ -1,12 +1,12 @@
-import smtplib # libary
-from email.message import EmailMessage # this pakage
-def sendemail(to,subject,body):
-    server=smtplib.SMTP_SSL('smtp.gmail.com',465)
-    server.login('nakkamanikanta1903@gmail.com','mqhv bzsl gbpj nkeu')
+import smtplib
+from email.message import EmailMessage
+def sendmail(to,subject,body):
+    server=smtplib.SMTP_SSL("smtp.gmail.com",465)
+    server.login('kakkireninikhilesh26@gmail.com','ogrm mvua faui wjnv')
     msg=EmailMessage()
-    msg['FROM']='nakkamanikanta1903@gmail.com'
-    msg['To']=to
+    msg['FROM']='kakkireninikhilesh26@gmail.com'
+    msg['TO']=to
     msg['SUBJECT']=subject
-    msg.set_content(body) #otp body for visiable
+    msg.set_content(body)
     server.send_message(msg)
     server.close()

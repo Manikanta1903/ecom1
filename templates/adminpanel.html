@@ -44,6 +44,11 @@
       -webkit-text-fill-color: transparent;
       text-shadow: none;
     }
+    .Bimage {
+      width: 15%;
+      height: 20%;
+      margin-left: 83%;
+    }
     </style>
 </head>
 <body>
@@ -56,18 +61,21 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Add item</a>
+                <a class="nav-link active" aria-current="page" href="{{url_for('additem')}}">Add item</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">View_all_items</a>
+                <a class="nav-link active" href="{{url_for('viewallitems')}}">View_all_items</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Update_Profile</a>
+                <a class="nav-link active" href="{{url_for('adminupdate')}}">Update_Profile</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="{{url_for('adminlogout')}}">Logout</a>
+                <a class="nav-link active" href="{{url_for('adminforgot')}}">Logout</a>
               </li>
             </ul>
+            {% if session.get('admin') %}
+            <div class="image"><img src="/static/Kb5Zc1.jpg" alt="Image" class="Bimage" width="5" height="5" /></div>
+            {% endif %}
             {{session.get('admin')}}
             <form class="d-flex" method="post" action="#">
               <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">

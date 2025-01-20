@@ -6,7 +6,7 @@ import os
 import razorpay
 import re
 from mysql.connector import (connection)
-mydb= connection.MySQLConnection(user='root', password='admin',host='localhost',database='ecommee')
+mydb= connection.MySQLConnection(user='root', password='Bullreddy',host='localhost',database='ecommee')
 app=Flask(__name__)
 app.secret_key='code@123'
 app.config['SESSION_TYPE']='filesystem'
@@ -172,7 +172,7 @@ def ad_password_update(token):
     return render_template('newpassword.html')
 
 @app.route('/adminlogout')
-def adminlogout():
+def admin():
     session.pop('admin')
     return redirect(url_for('adminlogin'))
 
@@ -221,6 +221,7 @@ def viewallitems():
             flash('Connection error')
             return redirect(url_for('adminpanel'))
         else:
+            # return render_template('viewall_items.html',stored_itemdata=stored_itemdata)
             return render_template('viewall_items.html',stored_itemdata=stored_itemdata)
     else:
         return redirect(url_for('adminlogin'))
@@ -491,7 +492,6 @@ def category(type):
     return render_template('dashboard.html',items_data=items_data)
 
 @app.route('/addcart/<itemid>/<name>/<price>/<qyt>/<category>/<image>')
-
 def addcart(itemid,name,price,qyt,category,image):
     if not session.get('user'):
         return redirect(url_for('userlogin'))

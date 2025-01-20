@@ -11,9 +11,9 @@
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap");
     @import url("https://fonts.googleapis.com/css2?family=Jersey+10&family=Merienda:wght@300..900&display=swap");
-
     body {
       background: linear-gradient(lightblue, gray);
+      overflow-x: hidden;
     }
     .navbar {
       background: linear-gradient(rgba(255, 192, 203, 0.582),
@@ -22,7 +22,7 @@
     }
 
     ul li a {
-      color: #000000 !important;
+      color: #d8caca;
       font-size: 18px;
       font-weight: bold;
     }
@@ -41,13 +41,14 @@
     }
 
     .banar {
-      margin-top: 4.5%;
+      margin-top: 4.4%;
       background: url(https://4kwallpapers.com/images/wallpapers/color-burst-colorful-explosion-cgi-cosmic-black-background-3840x2160-6652.jpg);
       background-repeat: no-repeat;
       background-size: 100%;
       background-position: center;
-      height: 55vh;
-      width: 100vw;
+      background-attachment: fixed;
+      height: 91vh;
+      width: 100%;
       display: flex;
       justify-content: space-around;
     }
@@ -57,10 +58,10 @@
     }
 
     footer {
-      background-color: rgb(193, 189, 189);
+      background-color: rgb(168, 163, 14);
       padding: 1%;
       text-align: center;
-      margin-top: 5%;
+      border-top: 5%;
     }
 
     .search {
@@ -73,8 +74,9 @@
     }
 
     .Bimage {
-      width: 100%;
-      height: 100%;
+      width: 15%;
+      height: 20%;
+      margin-left: 83%;
     }
 
     h1 {
@@ -119,10 +121,13 @@
 
     .card {
       height: 500px;
+      margin-left: 7%;
+      border-radius:5%;
     }
 
     .card-img-top {
       height: 250px;
+      border-radius: 5%;
       /* width: 100px; */
     }
 
@@ -135,14 +140,14 @@
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages %}
-<center style="color: bisque;">{{ message }}</center>
+<center style="color: rgb(2, 16, 38);">{{ message }}</center>
 {% endfor %}
 {% endif %}
 {% endwith %}
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
     <div class="container-fluid">
       <a href="{{url_for('index')}}"><img src="/static/BUYROUTE.png" alt="Logo" class="logo" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -157,9 +162,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact us</a>
           </li>
-          {% if session.get('useremail') %}
+          {% if session.get('user') %}
           <li class="nav-item">
-            <a class="nav-link" href="#">View cart</a>
+            <a class="nav-link" href="{{url_for('viewcart')}}">View cart</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('orders')}}">My Orders</a>
@@ -171,20 +176,19 @@
               Category
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Home
-                  Applications</a></li>
-              <li><a class="dropdown-item" href="#">Electronics</a></li>
-              <li><a class="dropdown-item" href="#">Fashion</a></li>
-              <li><a class="dropdown-item" href="#">Grocery</a></li>
+              <li><a class="dropdown-item" href="{{url_for('category',type='Home_appliances')}}">Home Applications</a></li>
+              <li><a class="dropdown-item" href="{{url_for('category',type='Electronics')}}">Electronics</a></li>
+              <li><a class="dropdown-item" href="{{url_for('category',type='Fashion')}}">Fashion</a></li>
+              <li><a class="dropdown-item" href="{{url_for('category',type='Grocery')}}">Grocery</a></li>
 
             </ul>
           </li>
-          {% if session.get('useremail') %}
+          {% if session.get('user') %}
           <li class="nav-item mt-2">
-            <a href="#" class="logout">Logout</a><br>
+            <a href="{{url_for('userlogout')}}" class="logout">Logout</a><br>
           </li>
           {% endif %}
-          {% if not session.get('useremail') %}
+          {% if not session.get('user') %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -194,7 +198,7 @@
               <li>
                 <a class="dropdown-item" href="{{url_for('admincreate')}}">Admin Signup</a>
               </li>
-              <li><a class="dropdown-item" href="#">User SignUp</a></li>
+              <li><a class="dropdown-item" href="{{url_for('usersignup')}}">User SignUp</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -206,13 +210,16 @@
               <li>
                 <a class="dropdown-item" href="{{url_for('adminlogin')}}">Admin Login</a>
               </li>
-              <li><a class="dropdown-item" href="#">User Login</a></li>
+              <li><a class="dropdown-item" href="{{url_for('userlogin')}}">User Login</a></li>
             </ul>
           </li>
           {% endif %}
         </ul>
-        {{session.get('useremail')}}&nbsp;
-        <form class="d-flex" method="post" action="#">
+        {% if session.get('user') %}
+        <div class="image"><img src="/static/Kb5Zc1.jpg" alt="Image" class="Bimage" width="5" height="5" /></div>
+        {% endif %}
+        {{session.get('user')}}&nbsp;
+        <form class="d-flex" method="post" action="{{url_for('search')}}">
           <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button> &nbsp;&nbsp;<a href="#"></a>
         </form>
@@ -229,27 +236,29 @@
               <h1>BUYROUTE</h1>
               <h3>Welcome's To You</h3>
             </div>
-            <div class="image"><img src="/static/imag.png" alt="Image" class="Bimage" /></div>
+            <!-- <div class="image"><img src="/static/Kb5Zc1.jpg" alt="Image" class="Bimage" width="5" height="5" /></div> -->
           </div>
         </div>
       </div>
     </div>
   </section>
-  {% if item_data %}
+  {% if items_data %}
   <section class="sec1">
     <div class="container-fluied">
       <div class="row">
-        {% for i in item_data %}
+        {% for i in items_data %}
         <div class="col-12 col-sm-12 col-md-3 mb-5">
           <div class="card" style="width: 20rem">
-            <img src="/static/{{i[2]}}" class="card-img-top" alt="Faction" />
+            <a href="{{url_for('description',itemid=i[0])}}"><img src="/static/{{i[5]}}" class="card-img-top" alt="Faction" /></a>
             <div class="card-body">
               <div class="matter">
+              <a href="{{url_for('description',itemid=i[0])}}" style="text-decoration: none;color: black;"><h3 class="card-title">{{i[1]}} </h3></a>
               <h5 class="card-title">{{i[0]}} </h5>
-              <h5 class="card-title">{{i[1]}} </h5>
               </div>
-              <br> <span>Cost:- {{i[3]}}/-</span>
-              <form method="post" action="#">
+              <br> <span>Cost:- {{i[2]}}/-</span>
+              <span>Stock:- {{i[3]}}/-</span>
+              <form method="post" action= # >
+              <!-- {{url_for('pay',itemid=i[0],name=i[1],price=i[2])}}" -->
                 <select name="qyt">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -265,7 +274,7 @@
                 <br>
                 <button class="btn btn-success" style="float: right;">Buy NOW</button></form>
               <div class="btn1">
-                <a href="#"
+                <a href="{{url_for('addcart',itemid=i[0],name=i[1],price=i[2],image=i[5],category=i[4],qyt=i[3])}}"
                   class="btn btn-warning" style="float: left;" >Add to cart</a>
                 
               </div>

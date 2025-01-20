@@ -9,31 +9,20 @@
         body{
             display: flex;
             justify-content: center;
-            /* background-color:gold; */
-            background-image: url(https://static.vecteezy.com/system/resources/previews/009/387/014/original/otp-authentication-and-secure-verification-never-share-otp-and-bank-details-concept-vector.jpg);
-            /* background: url(https://static.vecteezy.com/system/resources/thumbnails/007/164/537/small_2x/fingerprint-identity-sensor-data-protection-system-podium-hologram-blue-light-and-concept-free-vector.jpg); */
+            background-color: black;
+            background: url(https://static.vecteezy.com/system/resources/thumbnails/007/164/537/small_2x/fingerprint-identity-sensor-data-protection-system-podium-hologram-blue-light-and-concept-free-vector.jpg);
             background-repeat: no-repeat;
             background-size: cover;
         }
         form{
-            /* width: 500px; */
-            /* height: 200px; */
+            width: 300px;
+            height: auto;
             border: 1px solid;
             padding: 2%;
             margin-top: 15%;
             border-radius: 5px;
             background-color: rgba(255, 0, 0, 0.508) ;
             color: white;
-        }
-        button:active{
-         background-color: rgb(12, 215, 87);
-        
-
-        }
-        button{
-          background-color: bisque;
-          color:black;
-          width:55%;
         }
     </style>
 </head>
@@ -46,10 +35,9 @@
 {% endwith %}
 <body>
     <form  method="post">
-      <center>
-        <label for="exampleInputEmail1" class="form-label">OTP:- </label></center>
+        <label for="exampleInputEmail1" class="form-label">OTP:- </label>
         <input type="text" class="form-control" placeholder="Enter your OTP" name="otp" required><br>
-        <center><button>Submit</button></center>
+        <button>Submit</button>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
